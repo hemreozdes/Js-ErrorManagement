@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        </style>
+        <body>
+            <form>
+                Lesson Note:<input type="text" id="lessonnote"><br>
+                <input type="button" value="Submit" onclick="control()">
+            </form>
+            <p id="error"></p>
+            <p id="input"></p>
+            <script>
+                function control(){
+                    var grade,errormsg;
+                    errormsg=document.getElementById("error")
+                    errormsg.innerHTML="";
+                    grade=document.getElementById("lessonnote").value;
+                    try{
+                        if(grade==""){
+                            throw "There is no entered grade"
+                        }
+                        if(isNaN(grade)){
+                            throw "There is no integer number"
+                        }
+                        grade=Number(grade);
+                        if(grade<0 || grade>10) throw "The grade must be between 0-10"
+                    }                    
+                    catch(err){
+                        errormsg.innerHTML="Error: "+err;
+                    }
+                    finally{
+                        document.getElementById("input").innerHTML="Entered input is "+grade;
+                    }
+                }
+            </script>
+        </body>
+    </head>
+</html>
